@@ -14,13 +14,20 @@ void doPrint(int (*arr)[100]){
         printf("\n");
     }
 }
+// 1 오른쪽 , 2 아래, 3 왼쪽, 4 위
+typedef enum {
+    right = 1,
+    down = 2,
+    left = 3,
+    up = 4
+} Drection;
 
 void main(){
     printf("배열 크기 입력");
     scanf("%d",&len);
     
     int arr[100][100] ={0,};
-    int drec = 1;   // 1 오른쪽 , 2 아래, 3 왼쪽, 4 위
+    Drection drec = right;   
     /*
         1  2  3  4  5
         16 17 18 19 6
@@ -35,7 +42,7 @@ void main(){
             // printf("되나");
             break;
         }
-        if(drec == 1){
+        if(drec == right){
             arr[i][j] = value++;
             j++;
             if((len-cur) == j){
@@ -44,7 +51,7 @@ void main(){
                 j = j-1;    // j = 4
             }
         }
-        else if(drec == 2){ // 1,4 -> 2,3 ->3,3 -> 4,3
+        else if(drec == up){ // 1,4 -> 2,3 ->3,3 -> 4,3
              arr[i][j] = value++;
              i++;
              if((len-cur) == i){
@@ -58,7 +65,7 @@ void main(){
         }
 // \\192.168.0.111\_2021인공지능
 // \020.c언어_윤성우pdf\쌤소스\c_work21\20210215
-        else if(drec == 3){
+        else if(drec == left){
             arr[i][j] = value++;
             j--;
             if( j == (-1+cur) ){  // 4, -1
@@ -67,7 +74,7 @@ void main(){
                 j++;
             }
         }
-        else if(drec == 4){
+        else if(drec == down){
             arr[i][j] = value++;
             i--;
             if(i == (0+cur)){
